@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+	  layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<section class="layout-content" layout:fragment="corpo">
+		<main role="main">
+		<section class="jumbotron text-center">
+			<img class="d-block mx-auto" th:src="@{/image/apm.png}"
+				width="72" height="72">
+			<div class="container">
+				<h1 class="jumbotron-heading">Academia de Polícia Militar</h1>
+				<p class="lead text-muted">Desde 1935 formando líderes.</p>
+			</div>
+		</section>
+		<div class="album py-5 bg-light">
+			<div class="container">
+
+				<div class="d-flex justify-content-center">
+					<div class="col-md-10">
+						<div th:replace="fragments/alert :: alerta-sucesso"></div>
+						<form th:action="@{/turmas/salvar}"
+								th:object="${turma}" method="POST" class="was-validated">
+							<div class="form-row">
+							<div class="form-group col-md-9">
+								<div class="input-group">
+									<input type="text" class="form-control" id="serie"
+										    th:field="*{serie.nome}" readonly="readonly"/>
+								</div>
+							</div>
+							</div>
+							<div class="form-row">
+								<div class="form-group col-md-3">
+								<div class="input-group">
+									<input type="text" class="form-control" id="descricao"
+										    th:field="*{descricao}" readonly="readonly"/>
+								</div>
+								</div>
+								<div class="form-group col-md-2">
+									<div class="input-group">
+									<input type="text" class="form-control" id="ano"
+										    th:field="*{ano}" readonly="readonly"/>
+									</div>
+								</div>
+							<div class=" form-group col-md-2">
+								<div class="input-group">
+									<input type="text" class="form-control matricula" id="pel"
+										    th:field="*{pel}" readonly="readonly"/>
+								</div>
+							</div>
+							</div>
+							
+							<input type="hidden" th:field="*{id}" data-idturma="{id}"> 
+							<div class="form-row">
+								<div class="form-group col-sm-12">
+									<button type="submit" class="btn btn-primary"
+										data-toggle="tooltip" data-placement="right" title="Salvar">
+										<i class="fas fa-save"></i>
+									</button>
+								</div>
+							</div>
+		<div class="album py-5 bg-light">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h2>Alunos nesta turma</h2>
+						<table id="table-matriculados"
+							class="table table-sm table-striped table-bordered nowrap"
+							style="width: 100%">
+							<thead class="thead-dark">
+								<tr>
+									<th scope="col">Nome de Guerra</th>
+									<th scope="col">Nome</th>
+									<th scope="col">Número</th>
+									<th scope="col">Ano Matricula</th>
+									<th scope="col">Ano Turma</th>
+									<th scope="col">Turma</th>
+									<th scope="col">Ações</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	</section>
+	
+	<script	th:src="@{/js/matriculado.js(v=${version})}" th:fragment="js"></script>
+	<script th:inline="javascript" th:fragment="inlinescript">
+	
+	</script>
+</body>
+</html>
